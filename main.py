@@ -3,36 +3,40 @@ from c_scan import c_scan
 from fcfs import first_come_first_served
 from scan import scan
 from sstf import shortest_seek_time_first
+from look import look
 from c_look import CLOOK
 
 option = 0
 trackNumbers = []
 initialHeadPosition = 0
 
-while option != 7:
+while option != 9:
     system('cls')
-    print("""Menu
+    print(f"""Menu
+Track numbers array: {trackNumbers}
 1. Enter track numbers.
 2. FCFS.
 3. SSTF.
 4. SCAN.
 5. C-SCAN.
-6. Select example track numbers.
-7. C-LOOK
-8. Salir""")
+6. LOOK.
+7. C-LOOK.
+8. Select example track numbers.
+9. Exit""")
     
     option = int(input('Ingrese una opcion: '))
 
-    if len(trackNumbers) == 0 & option > 1 | option < 6:
+    if len(trackNumbers) == 0 & option > 1 | option < 8:
         print('You have not entered any track numbers dummy~')
         system('pause')
         continue
 
     if option == 1:
         inputNumber = 0
+        trackNumbers = []
         while inputNumber != -1:
-            print('Enter track number and press Enter. Leave blank to finish.')
-            inputString = input('Track number')
+            print('Enter track numbers and press Enter. Leave blank to finish.')
+            inputString = input('Track number: ')
 
             if len(inputString) == 0:
                 continue
@@ -57,19 +61,17 @@ while option != 7:
         c_scan(trackNumbers, initialHeadPosition)
         system('pause')
     elif option == 6:
-        trackNumbers = [ 176, 79, 34, 60, 92, 11, 41, 114 ]
+        initialHeadPosition = int(input('Enter the initial head position: '))
+        direction = input('Enter the search direction [right, left]: ')
+        look(trackNumbers, initialHeadPosition, direction)
+        system('pause')
     elif option == 7:
-        size = int(input("Enter the size of the request array: "))
-        arr = []
-        for i in range(size):
-            track = int(input(f"Enter track {i + 1}: "))
-            arr.append(track)
-        head = int(input("Enter the initial head position: "))
-
-        print("Initial position of head:", head)
-
-        CLOOK(arr, head)
+        initialHeadPosition= int(input("Enter the initial head position: "))
+        CLOOK(trackNumbers, initialHeadPosition)
+        system('pause')
     elif option == 8:
+        trackNumbers = [ 176, 79, 34, 60, 92, 11, 41, 114 ]
+    elif option == 9:
         print('Shutting down...')
     else:
         print('Enter a number in the menu dummy~')
