@@ -1,0 +1,4 @@
+LOOK Disk Scheduling Algorithm - COCO
+C-LOOK Disk Scheduling Algorithm - JOSE
+TABLA COMPARATIVA - DAVID
+ADAPTAR EL MENÚ - JOSUE
