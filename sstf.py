@@ -7,7 +7,7 @@ def find_min(difference):
     minimum = 999999999
  
     for i in range(len(difference)):
-        if (not difference[i][1] and minimum > difference[i][0]):
+        if (not difference[i][1] & minimum > difference[i][0]):
             minimum = difference[i][0]
             index = i
     return index 
