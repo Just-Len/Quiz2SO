@@ -1,6 +1,6 @@
 disk_size = 200
 
-def c_scan(trackNumbers, headPosition):
+def c_scan(trackNumbers, headPosition, printText = True):
 	seek_count = 0
 	distance = 0
 	cur_track = 0
@@ -47,6 +47,9 @@ def c_scan(trackNumbers, headPosition):
 
 		headPosition = cur_track
 
-	print("Total number of seek operations =", seek_count)
-	print("Seek Sequence is")
-	print(*seek_sequence, sep="\n")
+	if printText:
+		print("Total number of seek operations =", seek_count)
+		print("Seek Sequence is")
+		print(*seek_sequence, sep="\n")
+
+	return seek_count

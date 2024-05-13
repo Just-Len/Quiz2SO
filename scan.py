@@ -1,6 +1,6 @@
 disk_size = 200
 
-def scan(trackNumbers, headPosition, direction):
+def scan(trackNumbers, headPosition, direction, printText = False):
 	seek_count = 0
 	distance, cur_track = 0, 0
 	left = []
@@ -54,9 +54,12 @@ def scan(trackNumbers, headPosition, direction):
 		
 		run -= 1
 
-	print("Total number of seek operations =", seek_count)
-
-	print("Seek Sequence is")
+	if printText:
+		print("Total number of seek operations =", seek_count)
+		print("Seek Sequence is")
 
 	for i in range(len(seek_sequence)):
-		print(seek_sequence[i])
+		if printText:
+			print(seek_sequence[i])
+
+	return seek_count

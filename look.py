@@ -1,6 +1,6 @@
 disk_size = 200
 
-def look(trackNumbers, headPosition, direction): 
+def look(trackNumbers, headPosition, direction, printText = True):
 	seek_count = 0
 	distance = 0
 	cur_track = 0
@@ -52,8 +52,12 @@ def look(trackNumbers, headPosition, direction):
 			
 		run -= 1
 
-	print("Total number of seek operations =", seek_count) 
-	print("Seek Sequence is") 
+	if printText:
+		print("Total number of seek operations =", seek_count)
+		print("Seek Sequence is")
 
-	for i in range(len(seek_sequence)): 
-		print(seek_sequence[i]) 
+	for i in range(len(seek_sequence)):
+		if printText:
+			print(seek_sequence[i])
+
+	return seek_count

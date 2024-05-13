@@ -12,7 +12,7 @@ def find_min(difference):
             index = i
     return index
 
-def CLOOK(request, headPosition):
+def CLOOK(request, headPosition, printText = True):
     if len(request) == 0:
         return
 
@@ -31,9 +31,12 @@ def CLOOK(request, headPosition):
         headPosition = request[index]
 
     seek_sequence[-1] = headPosition
-
-    print("Total number of seek operations =", seek_count)
-    print("Seek Sequence is")
+    if printText:
+        print("Total number of seek operations =", seek_count)
+        print("Seek Sequence is")
 
     for i in range(l + 1):
-        print(seek_sequence[i])
+        if printText:
+            print(seek_sequence[i])
+
+    return seek_count

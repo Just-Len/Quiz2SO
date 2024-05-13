@@ -12,7 +12,7 @@ def find_min(difference):
             index = i
     return index 
      
-def shortest_seek_time_first(request, headPosition):             
+def shortest_seek_time_first(request, headPosition, printText = True):
         if (len(request) == 0): 
             return
          
@@ -39,9 +39,12 @@ def shortest_seek_time_first(request, headPosition):
      
         seek_sequence[len(seek_sequence) - 1] = headPosition 
          
-        print("Total number of seek operations =", seek_count) 
-                                                         
-        print("Seek Sequence is") 
-         
+        if printText:
+            print("Total number of seek operations =", seek_count)
+            print("Seek Sequence is")
+
         for i in range(l + 1):
-            print(seek_sequence[i])
+            if printText:
+                print(seek_sequence[i])
+
+        return seek_count

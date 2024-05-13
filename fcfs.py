@@ -1,4 +1,4 @@
-def first_come_first_served(requestedTracks, initialHeadPosition):
+def first_come_first_served(requestedTracks, initialHeadPosition, printText = True):
 	seek_count = 0
 	distance, cur_track = 0, 0
 	size = len(requestedTracks)
@@ -12,9 +12,12 @@ def first_come_first_served(requestedTracks, initialHeadPosition):
 
 		initialHeadPosition = cur_track
 	
-	print("Total number of seek operations = ", seek_count)
-
-	print("Seek Sequence is")
+		if printText:
+			print("Total number of seek operations = ", seek_count)
+			print("Seek Sequence is")
 
 	for i in range(size):
-		print(requestedTracks[i])
+		if printText:
+			print(requestedTracks[i])
+
+	return seek_count
