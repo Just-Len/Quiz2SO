@@ -43,8 +43,7 @@ def shortest_seek_time_first(request, headPosition, printText = True):
             print("Total number of seek operations =", seek_count)
             print("Seek Sequence is")
 
-        for i in range(l + 1):
-            if printText:
+            for i in range(l + 1):
                 print(seek_sequence[i])
 
         return seek_count
