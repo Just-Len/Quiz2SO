@@ -56,8 +56,7 @@ def look(trackNumbers, headPosition, direction, printText = True):
 		print("Total number of seek operations =", seek_count)
 		print("Seek Sequence is")
 
-	for i in range(len(seek_sequence)):
-		if printText:
+		for i in range(len(seek_sequence)):
 			print(seek_sequence[i])
 
 	return seek_count

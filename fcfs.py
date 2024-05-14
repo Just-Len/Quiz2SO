@@ -16,8 +16,7 @@ def first_come_first_served(requestedTracks, initialHeadPosition, printText = Tr
 			print("Total number of seek operations = ", seek_count)
 			print("Seek Sequence is")
 
-	for i in range(size):
-		if printText:
-			print(requestedTracks[i])
+			for i in range(size):
+				print(requestedTracks[i])
 
 	return seek_count
