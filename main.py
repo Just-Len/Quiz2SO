@@ -13,7 +13,7 @@ option = 0
 trackNumbers = []
 initialHeadPosition = 0
 
-while option != 9:
+while option != 11:
     system('cls')
     print(f"""Menu
 Track numbers array: {trackNumbers}
@@ -25,12 +25,13 @@ Track numbers array: {trackNumbers}
 6. LOOK.
 7. C-LOOK.
 8. Select example track numbers.
-9. Show algorithm table comparisons
-10. Exit""")
+9. Show algorithm table comparisons (massive)
+10. Show algorithm table comparisons (digitized track numbers)
+11. Exit""")
     
     option = int(input('Ingrese una opcion: '))
 
-    if len(trackNumbers) == 0 & option > 1 | option < 9:
+    if len(trackNumbers) == 0 & option > 1 | option < 10:
         print('You have not entered any track numbers dummy~')
         system('pause')
         continue
@@ -40,10 +41,11 @@ Track numbers array: {trackNumbers}
         trackNumbers = []
         while inputNumber != -1:
             print('Enter track numbers and press Enter. Leave blank to finish.')
-            inputString = input('Track number: ')
+            inputNumber = input('Track number: ')
 
-            if len(inputString) == 0:
-                continue
+
+            if len(inputNumber) == 0:
+                break
             else:
                 trackNumbers.append(int(inputNumber))
 
@@ -78,7 +80,7 @@ Track numbers array: {trackNumbers}
     elif option == 9:
         initialHeadPosition = int(input("Enter the initial head to all the algorithms: "))
         trackNumbersMassive = []
-        for number in range(15000):
+        for number in range(2000):
             trackNumbersMassive.append(random.randint(1, 199))
         start_time_FCFS = time.time()
         head_movements_FCFS = first_come_first_served(trackNumbersMassive,initialHeadPosition,False)
@@ -106,7 +108,26 @@ Track numbers array: {trackNumbers}
         print(f'{"C-SCAN": <15} | {str(head_movements_CSCAN): <15} | {str(end_time_CSCAN - start_time_CSCAN): <20}')
         print(f'{"LOOK": <15} | {str(head_movements_LOOK): <15} | {str(end_time_LOOK - start_time_LOOK): <20}')
         print(f'{"C-LOOK": <15} | {str(head_movements_CLOOK): <15} | {str(end_time_CLOOK - start_time_CLOOK): <20}')
+
     elif option == 10:
+        initialHeadPosition = int(input("Enter the initial head to all the algorithms: "))
+        direction = input('Enter the search direction [right, left]: ')
+        head_movements_FCFS = first_come_first_served(trackNumbers, initialHeadPosition, False)
+        head_movements_SSTF = shortest_seek_time_first(trackNumbers, initialHeadPosition, False)
+        head_movements_SCAN = scan(trackNumbers, initialHeadPosition, direction, False)
+        head_movements_CSCAN = c_scan(trackNumbers, initialHeadPosition, False)
+        head_movements_LOOK = look(trackNumbers, initialHeadPosition, direction, False)
+        head_movements_CLOOK = CLOOK(trackNumbers, initialHeadPosition)
+
+        print(f'{"Algorithm used": <15} | {"Head Movements": <15}')
+        print(f'{"FCFS": <15} | {str(head_movements_FCFS): <15}')
+        print(f'{"SSTF": <15} | {str(head_movements_SSTF): <15}')
+        print(f'{"SCAN": <15} | {str(head_movements_SCAN): <15}')
+        print(f'{"C-SCAN": <15} | {str(head_movements_CSCAN): <15}')
+        print(f'{"LOOK": <15} | {str(head_movements_LOOK): <15}')
+        print(f'{"C-LOOK": <15} | {str(head_movements_CLOOK): <15}')
+
+    elif option == 11:
         print('Shutting down...')
     else:
         print('Enter a number in the menu dummy~')
