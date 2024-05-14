@@ -43,7 +43,6 @@ Track numbers array: {trackNumbers}
             print('Enter track numbers and press Enter. Leave blank to finish.')
             inputNumber = input('Track number: ')
 
-
             if len(inputNumber) == 0:
                 break
             else:
@@ -116,6 +115,7 @@ Track numbers array: {trackNumbers}
         head_movements = CLOOK(trackNumbersMassive,initialHeadPosition, False)
         end_time = time.time()
         print(f'{"C-LOOK": <15} | {str(head_movements): <15} | {str(end_time - start_time): <20}')
+        system('pause')
     elif option == 10:
         initialHeadPosition = int(input("Enter the initial head to all the algorithms: "))
         direction = input('Enter the search direction [right, left]: ')
@@ -133,7 +133,7 @@ Track numbers array: {trackNumbers}
         print(f'{"C-SCAN": <15} | {str(head_movements_CSCAN): <15}')
         print(f'{"LOOK": <15} | {str(head_movements_LOOK): <15}')
         print(f'{"C-LOOK": <15} | {str(head_movements_CLOOK): <15}')
-
+        system('pause')
     elif option == 11:
         print('Shutting down...')
     else:
