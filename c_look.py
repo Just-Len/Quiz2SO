@@ -1,42 +1,47 @@
-def calculate_difference(queue, headPosition, difference):
-    for i in range(len(difference)):
-        difference[i][0] = abs(queue[i] - headPosition)
+disk_size = 200
 
-def find_min(difference):
-    index = -1
-    minimum = 999999999
+def CLOOK(trackNumbers, headPosition, printText = True):
+	seek_count = 0
+	distance = 0
+	current_track = 0
+	size = len(trackNumbers)
 
-    for i in range(len(difference)):
-        if (not difference[i][1] and minimum > difference[i][0]):
-            minimum = difference[i][0]
-            index = i
-    return index
+	left = []
+	right = []
+	seek_sequence = []
 
-def CLOOK(request, headPosition, printText = True):
-    if len(request) == 0:
-        return
+	for i in range(size):
+		if (trackNumbers[i] < headPosition):
+			left.append(trackNumbers[i])
+		if (trackNumbers[i] > headPosition):
+			right.append(trackNumbers[i])
 
-    l = len(request)
-    difference = [[0, 0] for _ in range(l)]
+	left.sort()
+	right.sort()
 
-    seek_count = 0
-    seek_sequence = [0] * (l + 1)
+	for i in range(len(right)):
+		current_track = right[i]
+		
+		seek_sequence.append(current_track)
+		distance = abs(current_track - headPosition)
+		seek_count += distance
+		headPosition = current_track
 
-    for i in range(l):
-        seek_sequence[i] = headPosition
-        calculate_difference(request, headPosition, difference)
-        index = find_min(difference)
-        difference[index][1] = True
-        seek_count += difference[index][0]
-        headPosition = request[index]
+	seek_count += abs(headPosition - left[0])
+	headPosition = left[0]
 
-    seek_sequence[-1] = headPosition
-    if printText:
-        print("Total number of seek operations =", seek_count)
-        print("Seek Sequence is")
+	for i in range(len(left)):
+		current_track = left[i]
+		seek_sequence.append(current_track)
+		distance = abs(current_track - headPosition)
+		seek_count += distance
+		headPosition = current_track
 
-        for i in range(l + 1):
-            print(seek_sequence[i])
+	if printText:
+		print("Total number of seek operations = ", seek_count)
+		print("Seek Sequence is")
 
+		for i in range(len(seek_sequence)):
+			print(seek_sequence[i])
 
-    return seek_count
+	return seek_count
