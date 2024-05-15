@@ -10,7 +10,7 @@ import time
 import random
 
 option = 0
-trackNumbers = []
+trackNumbers = [20, 40, 51, 112, 34, 78, 99, 60]
 initialHeadPosition = 0
 
 while option != 11:

@@ -1,64 +1,30 @@
-disk_size = 200
+def scan(trackNumbers, headPosition, direction, printText=True):
+    seek_count = 0
+    distance, cur_track = 0, 0
+    seek_sequence = []
 
-def scan(trackNumbers, headPosition, direction, printText = True):
-	seek_count = 0
-	distance, cur_track = 0, 0
-	left = []
-	right = []
-	seek_sequence = []
-	size = len(trackNumbers)
+    left = [track for track in trackNumbers if track < headPosition]
+    right = [track for track in trackNumbers if track >= headPosition]
 
-	if (direction == "left"):
-		left.append(0)
-	elif (direction == "right"):
-		right.append(disk_size - 1)
+    left.sort(reverse=True)
+    right.sort()
 
-	for i in range(size):
-		if (trackNumbers[i] < headPosition):
-			left.append(trackNumbers[i])
-		if (trackNumbers[i] > headPosition):
-			right.append(trackNumbers[i])
 
-	left.sort()
-	right.sort()
+    if direction == "left":
+        tracks = left + right
+    elif direction == "right":
+        tracks = right + left
 
-	run = 2
-	while (run != 0):
-		if (direction == "left"):
-			for i in range(len(left) - 1, -1, -1):
-				cur_track = left[i]
+    for track in tracks:
+        seek_sequence.append(track)
+        distance = abs(track - headPosition)
+        seek_count += distance
+        headPosition = track
 
-				seek_sequence.append(cur_track)
+    if printText:
+        print("Total number of seek operations =", seek_count)
+        print("Seek Sequence is")
+        for track in seek_sequence:
+            print(track)
 
-				distance = abs(cur_track - headPosition)
-
-				seek_count += distance
-
-				headPosition = cur_track
-			
-			direction = "right"
-	
-		elif (direction == "right"):
-			for i in range(len(right)):
-				cur_track = right[i]
-				
-				seek_sequence.append(cur_track)
-
-				distance = abs(cur_track - headPosition)
-
-				seek_count += distance
-
-				headPosition = cur_track
-			
-			direction = "left"
-		
-		run -= 1
-
-	if printText:
-		print("Total number of seek operations =", seek_count)
-		print("Seek Sequence is")
-
-		for i in range(len(seek_sequence)):
-			print(seek_sequence[i])
-
-	return seek_count
+    return seek_count
