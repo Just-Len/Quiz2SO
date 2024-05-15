@@ -1,3 +1,5 @@
+disk_size = 200
+
 def scan(trackNumbers, headPosition, direction, printText=True):
     seek_count = 0
     distance, cur_track = 0, 0
@@ -11,9 +13,9 @@ def scan(trackNumbers, headPosition, direction, printText=True):
 
 
     if direction == "left":
-        tracks = left + right
+        tracks = left + [0] + right
     elif direction == "right":
-        tracks = right + left
+        tracks = right + [disk_size - 1] + left
 
     for track in tracks:
         seek_sequence.append(track)
